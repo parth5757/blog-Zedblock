@@ -8,3 +8,15 @@ activate Environment
 ```bash
 env/scripts/activate
 ```
+
+```bash
+pip install django
+```
+
+```
+python manage.py makemigrations
+```
+
+```bash
+python manage.py migrate
+```
