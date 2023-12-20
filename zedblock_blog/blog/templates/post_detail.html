@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }} - Zedblock Blog</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">Zedblock Blog</a></h1>
+        <!-- Add navigation links if needed -->
+    </header>
+
+    <article class="post-detail">
+        <h2>{{ post.title }}</h2>
+        <p>Published on: <span class="pub-date">{{ post.pub_date }}</span></p>
+        <div class="content">
+            {{ post.content|safe }}
+        </div>
+    </article>
+
+    <footer>
+        <!-- Add footer content if needed -->
+    </footer>
+</body>
+
+</html>

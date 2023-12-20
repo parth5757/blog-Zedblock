@@ -17,12 +17,11 @@ def admin(request):
 def add_post(request):
     if request.method == 'POST':
         title = request.POST.get('title')
-        content = request.POST.get('content')
-        image = request.FILES.get('image')
+        content = request.POST.get('content')        
 
         if title and content:
             # Create a new post in the database
-            new_post = BlogPost(title=title, content=content, image=image)
+            new_post = BlogPost(title=title, content=content)
             new_post.save()
             return redirect('home')
 

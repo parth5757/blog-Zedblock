@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zedblock Blog</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <header>
+        <h1>Zedblock Blog</h1>
+        <!-- Add navigation links if needed -->
+    </header>
+
+    <section class="blog-posts">
+        {% for post in posts %}
+        <div class="post">
+            <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
+            <p>{{ post.content }}</p>
+        </div>
+        {% endfor %}
+    </section>
+
+    <footer>
+        <!-- Add footer content if needed -->
+    </footer>
+</body>
+
+</html>
