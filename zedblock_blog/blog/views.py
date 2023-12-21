@@ -17,7 +17,7 @@ def admin(request):
 def add_post(request):
     if request.method == 'POST':
         title = request.POST.get('title')
-        content = request.POST.get('content')        
+        content = request.POST.get('content')
 
         if title and content:
             # Create a new post in the database
