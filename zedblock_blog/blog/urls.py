@@ -7,4 +7,6 @@ urlpatterns = [
     path('blog_admin/', admin, name='admin'),
     path('add_post/', add_post, name='add_post'),
     path('delete_post/', delete_post, name='delete_post'),
+    path('post/<int:pk>/edit/', edit_post, name='edit_post'),
+    # path('post/<int:pk>/delete/', delete_post, name='delete_post'),
 ]
