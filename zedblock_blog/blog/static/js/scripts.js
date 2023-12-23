@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const addPostForm = document.getElementById("addPostForm");
-    const deletePostForm = document.getElementById("deletePostForm");
+    const editPostForm = document.getElementById("editPostForm");
+    const deletePostBtn = document.getElementById("deletePostBtn");
 
-    addPostForm.addEventListener("submit", function (event) {
-        // Add form validation logic here
+    editPostForm.addEventListener("submit", function (event) {
         const title = document.getElementById("title").value;
         const content = document.getElementById("content").value;
 
@@ -11,15 +10,20 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             alert("Please fill out all fields.");
         }
+
+        // Set form action based on whether it's an edit or add operation
+        const postId = document.getElementById("postId").value;
+        const formAction = `/edit_post/${postId}/` + (postId ? '' : 'add_edit_post/');
+        editPostForm.setAttribute("action", formAction);
     });
 
-    deletePostForm.addEventListener("submit", function (event) {
-        // Add form validation logic here
-        const postId = document.getElementById("postId").value;
-
-        if (!postId || isNaN(postId)) {
-            event.preventDefault();
-            alert("Please enter a valid Post ID.");
+    deletePostBtn.addEventListener("click", function () {
+        const confirmDelete = confirm("Are you sure you want to delete this post?");
+        if (confirmDelete) {
+            // Perform the delete action
+            const postId = document.getElementById("postId").value;
+            alert(`Deleting post with ID: ${postId}`);
+            // Add logic to redirect or handle delete on the same page
         }
     });
 });

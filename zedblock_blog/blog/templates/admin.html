@@ -18,37 +18,35 @@
     <section class="admin">
         <h2>Admin Panel</h2>
 
-        <form id="addPostForm" method="post" action="{% url 'add_post' %}">
+        <!-- Display all posts -->
+        <div class="post-list">
+            {% for post in posts %}
+            <div class="post">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <p>Published on: {{ post.pub_date }}</p>
+                <p>
+                    <a href="{% url 'edit_post' post.id %}">Edit</a>
+                    <a href="{% url 'delete_post' post.id %}">Delete</a>
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Add/Edit Post Form -->
+        <form id="addEditPostForm" method="post" action="{% url 'add_edit_post' %}">
             {% csrf_token %}
+            <input type="hidden" id="postId" name="postId" value="">
             <label for="title">Title:</label>
             <input type="text" id="title" name="title" required>
 
             <label for="content">Content:</label>
             <textarea id="content" name="content" required></textarea>
 
-            <button type="submit">Add Post</button>
-        </form>
-
-        <form id="deletePostForm" method="post" action="{% url 'delete_post' %}">
-            {% csrf_token %}
-            <label for="postId">Post ID to delete:</label>
-            <input type="number" id="postId" name="postId" required>
-
-            <button type="submit">Delete Post</button>
+            <button type="submit" id="submitBtn">Add Post</button>
         </form>
     </section>
-    <section class="blog-posts">
-        {% for post in posts %}
-        <div class="post">
-            <h2><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></h2>
-            <p>{{ post.content }}</p>
-            <p>
-                <a href="{% url 'edit_post' post.id %}">Edit</a>
-                <a href="{% url 'delete_post' post.id %}">Delete</a>
-            </p>
-        </div>
-        {% endfor %}
-    </section>
+
     <footer>
         <!-- Add footer content if needed -->
     </footer>
